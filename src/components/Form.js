@@ -35,7 +35,7 @@ const MatForm = () => {
         } 
 
 
-    })
+    }, [state])
     
     const handleChange = (event) => {
 
