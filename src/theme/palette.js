@@ -20,7 +20,7 @@ export default {
         dark: lightBlue,
         main: lightBlue,
         light: lightBlue        
-    },
+    }, 
     default: {
         contrastText: black,
         dark: lightSkyBlue,
