@@ -15,30 +15,40 @@ const MatForm = () => {
     const classes = useStyles();
     const [state, setState] = useState({
         helperText: '',
-        error: false
+        error: false,
+        isChange: false
     });
+    const [isDisabled, setIsDisabled] = useState(true);
 
     useEffect(() => {
+
+        if(!(state.helperText) && !(state.isChange) && !(state.error)) {
+            setIsDisabled(true);
+        } 
+
+        if(!(state.helperText) && !!(state.isChange) && !(state.error)) {
+            setIsDisabled(false);
+        } 
+
+        if(!!(state.helperText) && !!(state.isChange) && !!(state.error)) {
+            setIsDisabled(true);
+        } 
+
 
     })
     
     const handleChange = (event) => {
 
        if(event.target.value < 0 || event.target.value > 10) {
-     
-           setState({helperText: 'Must be numeric value between 1 - 10', error: true})
-           console.log(state);
+           setState({helperText: 'Must be numeric value between 1 - 10', error: true, isChange: true});
        } else {
-        console.log('qqqqqqq');
-        setState({helperText: '', error: false})
+        setState({helperText: '', error: false, isChange: true})
        }
 
 
        // setState({...state, [event.target.id]: event.target.value})
     }
 
-    console.log('---');
-    console.log(state);
     return (
         <Paper>
         <form className={classes.root} noValidate autoComplete="off">
@@ -62,6 +72,7 @@ const MatForm = () => {
             <Button 
              variant="contained"
              color="secondary"
+             disabled={isDisabled}
             >
             Submit
             </Button>
