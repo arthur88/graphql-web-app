@@ -1,5 +1,5 @@
 const express = require("express");
-const graphqlHTTP = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema");
 const resolvers = require("./resolvers");
 const { startDatabase } = require("./database");
@@ -16,13 +16,13 @@ const context = async () => {
 const app = express();
  
 app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    rootValue: resolvers,
-    context,
-  })
-);
+    "/graphql",
+    graphqlHTTP({
+      schema,
+      rootValue: resolvers,
+      context,
+    })
+  );
  
 //Graphql Playground route
 app.get("/playground", expressPlayground({ endpoint: "/graphql" }));
